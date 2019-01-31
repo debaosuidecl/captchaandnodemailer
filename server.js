@@ -107,6 +107,7 @@ app.post("/subscribe", (req, res) => {
     }
     if (isEmpty(firstName) || isEmpty(lastName) || isEmpty(email)) {
       return res.status(400).json({
+        success: false,
         msg: `First Name Last Name and Email are required`
       });
     }
@@ -137,13 +138,14 @@ app.post("/subscribe", (req, res) => {
     transporter.sendMail(mail, (err, data) => {
       console.log(data);
       if (err) {
-        return res.json({
-          msg: "fail"
+        return res.status(400).json({
+          msg: "Server Temporarily down, message not sent",
+          success: false
         });
       }
 
       return res.json({
-        captcha: "success",
+        success: true,
         msg: "Message Sent"
       });
     });
