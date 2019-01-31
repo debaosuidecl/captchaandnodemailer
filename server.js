@@ -4,6 +4,7 @@ const request = require("request");
 const nodemailer = require("nodemailer");
 // const config = require("./config/config");
 const isEmpty = require("./is-empty");
+const getCountryCode = require("./getCountryCode");
 
 const bodyParser = require("body-parser");
 
@@ -52,7 +53,7 @@ transporter.verify((error, success) => {
 
 app.get("/", (req, res) => {
   res.json({
-    msg: "blah blah blah"
+    countries: getCountryCode.countries
   });
 });
 
