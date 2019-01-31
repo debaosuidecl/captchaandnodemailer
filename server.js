@@ -31,8 +31,10 @@ let transporter = nodemailer.createTransport({
   // tls: {
   //   rejectUnauthorized: false
   // }
-  host: "weaver.whogohost.com",
-  port: 26,
+  // host: "weaver.whogohost.com",
+  // port: 26,
+  host: process.env.HOST,
+  port: process.env.SMTPPORT,
   secure: false,
   auth: {
     user: process.env.USER,
@@ -114,14 +116,14 @@ app.post("/subscribe", (req, res) => {
 
     let companyName = req.body.companyName || "Not Provided";
     let phoneNumber = req.body.phoneNumber || "Not Provided";
-    let countryCode = req.body.countryCode || "Not Provided";
+    // let countryCode = req.body.countryCode || "Not Provided";
     let comment = req.body.comment || "Not Provided";
 
     let content = `
     <div>
     <h1 style="font-size: 20px; color: #444;">A Message just came in from  ${firstName} ${lastName} < ${email}>:</h1>
     <h3>Company name: ${companyName}</h3>
-    <h3>Phone Number: (${countryCode}) ${phoneNumber}</h3>
+    <h3>Phone Number: ${phoneNumber}</h3>
     <hr/>
     <h3>Here is the message:</h3>
    <h4 style="font-family: 'ubuntu'">${comment}</h4> 
