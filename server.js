@@ -58,12 +58,11 @@ app.post("/subscribe", (req, res) => {
     });
   }
   // secret key
-  const secretKey = "6LfNGI4UAAAAANS7L0_3hzQzqv85De1jFtpQFOno";
 
   //verify URL
-  const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${
-    req.body.recaptcha
-  }&remoteip=${req.connection.remoteAddress}`;
+  const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${
+    config.Secret
+  }&response=${req.body.recaptcha}&remoteip=${req.connection.remoteAddress}`;
   //make request to verify url
 
   request(verifyUrl, (err, response, body) => {
