@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const request = require("request");
 const nodemailer = require("nodemailer");
-const config = require("./config/config");
+// const config = require("./config/config");
 const isEmpty = require("./is-empty");
 
 const bodyParser = require("body-parser");
@@ -24,8 +24,8 @@ let transporter = nodemailer.createTransport({
   port: 26,
   secure: false,
   auth: {
-    user: config.USER,
-    pass: config.PASSWORD
+    user: process.env.USER,
+    pass: process.env.PASSWORD
   },
   tls: {
     rejectUnauthorized: false
@@ -61,7 +61,7 @@ app.post("/subscribe", (req, res) => {
 
   //verify URL
   const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${
-    config.Secret
+    process.env.Secret
   }&response=${req.body.recaptcha}&remoteip=${req.connection.remoteAddress}`;
   //make request to verify url
 
