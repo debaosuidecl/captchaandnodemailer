@@ -132,7 +132,7 @@ app.post("/subscribe", (req, res) => {
 
     let mail = {
       from: `${firstName} ${lastName} <${process.env.USER}>`,
-      to: "debaosuidecl@gmail.com",
+      to: "domainsales@anthill.net",
       subject: `New message on your website ${firstName} ${lastName}`,
       html: content
     };
