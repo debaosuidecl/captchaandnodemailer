@@ -131,7 +131,7 @@ app.post("/subscribe", (req, res) => {
 `;
 
     let mail = {
-      from: `${firstName} ${lastName} <${process.env.HOST}>`,
+      from: `${firstName} ${lastName} <${process.env.USER}>`,
       to: "debaosuidecl@gmail.com",
       subject: `New message on your website ${firstName} ${lastName}`,
       html: content
@@ -141,7 +141,7 @@ app.post("/subscribe", (req, res) => {
       console.log(data);
       if (err) {
         return res.status(400).json({
-          msg: "Server Temporarily down, message not sent",
+          msg: "Message not sent",
           success: false
         });
       }
